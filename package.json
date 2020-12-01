@@ -2,18 +2,37 @@
   "name": "react-windows",
   "version": "0.1.0",
   "private": true,
+  "license": "ISC",
+  "homepage": "https://github.com/pbenard73/react-windows",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pbenard73/react-windows"
+  },
+  "description": "Admin Dashboard with Windowed components",
+  "keywords": [
+    "react",
+    "windows",
+    "dashboard",
+    "admin",
+    "windowed",
+    "window"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "node-sass": "^4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "which": "^2.0.2"
   },
+  "main": "./dist/index.js",
+  "types": "/dist/main.d.ts",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf ./dist; ./node_modules/webpack/bin/webpack.js && npx tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -33,6 +52,27 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-draggable": "^4.4.3",
+    "react-mac-calculator-extra": "^1.0.2",
+    "react-resizable": "^1.11.0",
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "clean-webpack-plugin": "^3.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ],
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
     ]
   }
 }
