@@ -1,14 +1,18 @@
-# React Windows
+# Windows React Dashboard
 
 React Dashboard with windowed components
 
-![react-windows screenshot](https://github.com/pbenard73/react-windows/raw/master/doc/screenshot.png =600x)
+![react-windows-dashboard screenshot](https://github.com/pbenard73/react-windows-dashboard/raw/master/doc/screenshot.png =600x)
+
+## Installation
+
+`npm install --save-dev react-windows-dashboard`
 
 ## Usage
 
 ```js
 import React, { useState } from "react";
-import { Windows } from "react-windows";
+import { Windows } from "react-windows-dashboard";
 
 /**
  * A simple note component

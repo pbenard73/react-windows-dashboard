@@ -1,12 +1,12 @@
 {
-  "name": "react-windows",
+  "name": "react-windows-dashboard",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "license": "ISC",
-  "homepage": "https://github.com/pbenard73/react-windows",
+  "homepage": "https://github.com/pbenard73/react-windows-dashboard",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pbenard73/react-windows"
+    "url": "https://github.com/pbenard73/react-windows-dashboard"
   },
   "description": "Admin Dashboard with Windowed components",
   "keywords": [
