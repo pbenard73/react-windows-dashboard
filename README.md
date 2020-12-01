@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# React Windows
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Dashboard with windowed components
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+```js
+import React, { useState } from "react";
+import { Windows } from "react-windows";
 
-### `yarn start`
+/**
+ * A simple note component
+ */
+const Note = () => <div contenteditable="true">A note</div>;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+/**
+ * A movie component
+ */
+const Movie = () => (
+    <iframe
+        style={{ width: "100%", height: "100%" }}
+        src="https://www.youtube.com/embed/dfTPlsIq7d0"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+    ></iframe>
+);
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+/**
+ * The dashboard to use
+ *
+ * Note that dashboard has 2 icons (set your own image pathes)
+ */
+const Dashboard = props => (
+    <div
+        className="dashboard"
+        style={{
+            background: "whitesmoke",
+            height: "100vh",
+            width: "100vw",
+            columnCount: 12
+        }}
+    >
+        <img
+            src="/My computer.png"
+            onClick={() => props.add()}
+            style={{
+                width: "80px",
+                height: "80px",
+                cursor: "pointer",
+                userSelect: "none"
+            }}
+        />
+        <img
+            src="/movie.png"
+            onClick={props.openMovie}
+            style={{
+                width: "80px",
+                height: "80px",
+                cursor: "pointer",
+                userSelect: "none",
+                margin: "10px 0"
+            }}
+        />
+    </div>
+);
 
-### `yarn test`
+/**
+ * The initial state of opened windows
+ */
+let initialWindows = {
+    first_note: {
+        component: <Note />,
+        title: "Note"
+    }
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+function App() {
+    let [windows, setWindows] = useState(initialWindows);
+    let [index, setIndex] = useState(0);
 
-### `yarn build`
+    /**
+     * Add a window in the state
+     */
+    const addWindow = myWindow => {
+        const newIndex = index + 1;
+        let newWindows = { ...windows };
+        newWindows[`window_${newIndex}`] =
+            myWindow !== undefined
+                ? myWindow
+                : { ...initialWindows.first_note };
+        setWindows(newWindows);
+        setIndex(newIndex);
+    };
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    /**
+     * Open a movie window
+     */
+    const openMovie = () => {
+        addWindow({
+            title: "Movie",
+            component: <Movie />
+        });
+    };
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    /**
+     * Close window behaviour
+     */
+    const close = uuid => {
+        let newWindows = { ...windows };
+        if (newWindows[uuid] !== undefined) {
+            newWindows[uuid] = undefined;
+            delete newWindows[uuid];
+        }
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        setWindows(newWindows);
+    };
 
-### `yarn eject`
+    /**
+     * The rendered dashboard
+     */
+    const dashboard = <Dashboard add={addWindow} openMovie={openMovie} />;
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    return (
+        <div className="App">
+            <Windows dashboard={dashboard} onClose={close} windows={windows} />
+        </div>
+    );
+}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App;
+```
