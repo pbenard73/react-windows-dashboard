@@ -2,6 +2,7 @@ src/
 package-lock.json
 webpack.config.js
 coverage/
+doc/
 public/
 test/
 .gitignore

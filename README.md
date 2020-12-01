@@ -2,6 +2,8 @@
 
 React Dashboard with windowed components
 
+![react-windows screenshot](https://github.com/pbenard73/react-windows/raw/master/doc/screenshot.png =600x)
+
 ## Usage
 
 ```js
