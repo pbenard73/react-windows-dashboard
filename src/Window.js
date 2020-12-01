@@ -1,71 +1,69 @@
-import { useState } from "react";
+import React from "react"
 
-import Draggable from "react-draggable";
-import { Resizable, ResizableBox } from "react-resizable";
+import Draggable from "react-draggable"
+import { Resizable, ResizableBox } from "react-resizable"
 
-import "./styles/Windows.scss";
+import "./styles/Windows.scss"
 
-const Window = props => {
-    const onResizeStart = e => {
-        e.preventDefault();
-    };
+class Window extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            full: false,
+        }
 
-    let [full, setFull] = useState(false);
+        this.onResizeStart = this.onResizeStart.bind(this)
+        this.toggle = this.toggle.bind(this)
 
-    const toggle = () => setFull(!full);
+        this.options = this.props.options
+        this.minSize = this.options.minSize !== undefined ? this.options.minSize : [300, 300]
+        this.resizable = this.options.resizable !== false
 
-    const options = props.options;
-    const minSize =
-        options.minSize !== undefined ? options.minSize : [300, 300];
-    const resizable = options.resizable !== false;
+        this.sizableOptions = {
+            width: this.minSize[0],
+            height: this.minSize[1],
+            minConstraints: this.minSize,
+            onResizeStart: this.onResizeStart,
+        }
 
-    const sizableOptions = {
-        width: minSize[0],
-        height: minSize[1],
-        minConstraints: minSize,
-        onResizeStart: onResizeStart
-    };
+        if (this.resizable === false) {
+            this.sizableOptions.maxConstraints = this.sizableOptions.minConstraints
+        }
 
-    if (resizable === false) {
-        sizableOptions.maxConstraints = sizableOptions.minConstraints;
     }
 
-    return (
-        <Draggable
-            cancel=".react-resizable-handle"
-            onStart={props.active}
-            className={full === true ? "fullscreen" : ""}
-            defaultClassName={
-                full === true
-                    ? "react-draggable window_container fullscreen"
-                    : "window_container react-draggable"
-            }
-            bounds=".dashboard"
-        >
-            <ResizableBox {...sizableOptions}>
-                <div
-                    className="window"
-                    onClick={props.active}
-                    style={props.style}
-                >
-                    <div className="decorator">
-                        <span className="title">{props.title}</span>
-                        {resizable === false ? null : (
-                            <span
-                                className="decorator_toggle"
-                                onClick={toggle}
-                            ></span>
-                        )}
-                        <span
-                            className="decorator_close"
-                            onClick={props.onClose}
-                        ></span>
-                    </div>
-                    <div className="window_content">{props.children}</div>
-                </div>
-            </ResizableBox>
-        </Draggable>
-    );
-};
+    onResizeStart(e) {
+        e.preventDefault()
+    }
 
-export default Window;
+    toggle() {
+        this.setState({ full: !this.state.full })
+    }
+
+    render() {
+        return (
+            <Draggable
+                cancel='.react-resizable-handle'
+                onStart={this.props.active}
+                className={this.state.full === true ? "fullscreen" : ""}
+                defaultClassName={
+                    this.state.full === true ? "react-draggable window_container fullscreen" : "window_container react-draggable"
+                }
+                bounds='.dashboard'
+            >
+                <ResizableBox {...this.sizableOptions}>
+                    <div className='window' onClick={this.props.active} style={this.props.style}>
+                        <div className='decorator'>
+                            <span className='title'>{this.props.title}</span>
+                            {this.resizable === false ? null : <span className='decorator_toggle' onClick={this.toggle}></span>}
+                            <span className='decorator_close' onClick={this.props.onClose}></span>
+                        </div>
+                        <div className='window_content'>{this.props.children}</div>
+                    </div>
+                </ResizableBox>
+            </Draggable>
+        )
+    }
+}
+
+export default Window

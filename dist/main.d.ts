@@ -1,4 +1,5 @@
 export const Windows: typeof BaseWindows;
-export const Window: (props: any) => any;
-export const Options: any;
+export const Window: typeof BaseWindow;
+export const options: any;
 import BaseWindows from "./Windows";
+import BaseWindow from "./Window";

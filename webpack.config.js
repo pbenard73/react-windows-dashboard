@@ -13,8 +13,10 @@ module.exports = {
   },
   plugins: [new CleanWebpackPlugin()],
 externals: {
+ 'react-draggable': 'react-draggable', // Case matters here 
+ 'react-resizable': 'react-resizable', // Case matters here 
  'react': 'react', // Case matters here 
- 'react-dom' : 'reactDOM' // Case matters here 
+ 'react-dom' : 'react-dom' // Case matters here 
 },	
   module: {
     rules: [
