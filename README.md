@@ -2,7 +2,7 @@
 
 React Dashboard with windowed components
 
-![react-windows-dashboard screenshot](https://github.com/pbenard73/react-windows-dashboard/raw/master/doc/screenshot.png =600x)
+![react-windows-dashboard screenshot](https://github.com/pbenard73/react-windows-dashboard/raw/master/doc/screenshot.png)
 
 ## Installation
 
