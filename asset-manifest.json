@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/pbenard73/react-windows-dashboard/static/css/main.d6d3d4db.chunk.css",
-    "main.js": "/pbenard73/react-windows-dashboard/static/js/main.b5ceb63c.chunk.js",
-    "main.js.map": "/pbenard73/react-windows-dashboard/static/js/main.b5ceb63c.chunk.js.map",
-    "runtime-main.js": "/pbenard73/react-windows-dashboard/static/js/runtime-main.d24bb486.js",
-    "runtime-main.js.map": "/pbenard73/react-windows-dashboard/static/js/runtime-main.d24bb486.js.map",
-    "static/js/2.5c8255b8.chunk.js": "/pbenard73/react-windows-dashboard/static/js/2.5c8255b8.chunk.js",
-    "static/js/2.5c8255b8.chunk.js.map": "/pbenard73/react-windows-dashboard/static/js/2.5c8255b8.chunk.js.map",
-    "static/js/3.94fd5dbc.chunk.js": "/pbenard73/react-windows-dashboard/static/js/3.94fd5dbc.chunk.js",
-    "static/js/3.94fd5dbc.chunk.js.map": "/pbenard73/react-windows-dashboard/static/js/3.94fd5dbc.chunk.js.map",
-    "index.html": "/pbenard73/react-windows-dashboard/index.html",
-    "static/css/main.d6d3d4db.chunk.css.map": "/pbenard73/react-windows-dashboard/static/css/main.d6d3d4db.chunk.css.map",
-    "static/js/2.5c8255b8.chunk.js.LICENSE.txt": "/pbenard73/react-windows-dashboard/static/js/2.5c8255b8.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/pbenard73/react-windows-dashboard/static/media/logo.6ce24c58.svg"
+    "main.css": "/react-windows-dashboard/static/css/main.d6d3d4db.chunk.css",
+    "main.js": "/react-windows-dashboard/static/js/main.658ab839.chunk.js",
+    "main.js.map": "/react-windows-dashboard/static/js/main.658ab839.chunk.js.map",
+    "runtime-main.js": "/react-windows-dashboard/static/js/runtime-main.e0053962.js",
+    "runtime-main.js.map": "/react-windows-dashboard/static/js/runtime-main.e0053962.js.map",
+    "static/js/2.5c8255b8.chunk.js": "/react-windows-dashboard/static/js/2.5c8255b8.chunk.js",
+    "static/js/2.5c8255b8.chunk.js.map": "/react-windows-dashboard/static/js/2.5c8255b8.chunk.js.map",
+    "static/js/3.94fd5dbc.chunk.js": "/react-windows-dashboard/static/js/3.94fd5dbc.chunk.js",
+    "static/js/3.94fd5dbc.chunk.js.map": "/react-windows-dashboard/static/js/3.94fd5dbc.chunk.js.map",
+    "index.html": "/react-windows-dashboard/index.html",
+    "static/css/main.d6d3d4db.chunk.css.map": "/react-windows-dashboard/static/css/main.d6d3d4db.chunk.css.map",
+    "static/js/2.5c8255b8.chunk.js.LICENSE.txt": "/react-windows-dashboard/static/js/2.5c8255b8.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/react-windows-dashboard/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d24bb486.js",
+    "static/js/runtime-main.e0053962.js",
     "static/js/2.5c8255b8.chunk.js",
     "static/css/main.d6d3d4db.chunk.css",
-    "static/js/main.b5ceb63c.chunk.js"
+    "static/js/main.658ab839.chunk.js"
   ]
 }
