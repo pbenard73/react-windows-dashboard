@@ -46,17 +46,24 @@ class Window extends React.Component {
     }
 
     render() {
+        let className = 'react-draggable window_container'
+        if (this.state.full === true) {
+            className += ' fullscreen'
+        }
+
+        if (this.props.active === true) {
+        className += ' window_active'
+        }
+
         return (
             <Draggable
                 cancel='.react-resizable-handle'
                 onStart={this.props.setActive}
-                defaultClassName={
-                    this.state.full === true ? "react-draggable window_container fullscreen" : "window_container react-draggable"
-                }
+                defaultClassName={className}
                 bounds='.dashboard'
             >
                 <ResizableBox {...this.sizableOptions} id={this.props.data.uuid}>
-                    <div className={`window ${this.props.active === true ? 'window_active' : ''}`} style={this.props.style}>
+                    <div className="window" style={this.props.style}>
                         <div className='decorator'>
                             <span className='title'>{this.props.data.title}</span>
                             {this.resizable === false ? null : <span className='decorator_toggle' onClick={this.toggle}></span>}
