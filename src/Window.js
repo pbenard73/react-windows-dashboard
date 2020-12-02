@@ -15,7 +15,7 @@ class Window extends React.Component {
         this.onResizeStart = this.onResizeStart.bind(this)
         this.toggle = this.toggle.bind(this)
 
-        this.options = this.props.options
+        this.options = this.props.data.options === undefined ? {} : this.props.data.options
         this.minSize = this.options.minSize !== undefined ? this.options.minSize : [300, 300]
         this.resizable = this.options.resizable !== false
 
@@ -24,6 +24,11 @@ class Window extends React.Component {
             height: this.minSize[1],
             minConstraints: this.minSize,
             onResizeStart: this.onResizeStart,
+            style: {
+            left: '100px',
+            top:'100px',
+            position:'absolute'
+            }
         }
 
         if (this.resizable === false) {
@@ -44,17 +49,16 @@ class Window extends React.Component {
         return (
             <Draggable
                 cancel='.react-resizable-handle'
-                onStart={this.props.active}
-                className={this.state.full === true ? "fullscreen" : ""}
+                onStart={this.props.setActive}
                 defaultClassName={
                     this.state.full === true ? "react-draggable window_container fullscreen" : "window_container react-draggable"
                 }
                 bounds='.dashboard'
             >
-                <ResizableBox {...this.sizableOptions}>
-                    <div className='window' onClick={this.props.active} style={this.props.style}>
+                <ResizableBox {...this.sizableOptions} id={this.props.data.uuid}>
+                    <div className={`window ${this.props.active === true ? 'window_active' : ''}`} style={this.props.style}>
                         <div className='decorator'>
-                            <span className='title'>{this.props.title}</span>
+                            <span className='title'>{this.props.data.title}</span>
                             {this.resizable === false ? null : <span className='decorator_toggle' onClick={this.toggle}></span>}
                             <span className='decorator_close' onClick={this.props.onClose}></span>
                         </div>

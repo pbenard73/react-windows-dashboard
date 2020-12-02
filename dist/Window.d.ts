@@ -14,6 +14,11 @@ declare class Window {
         height: any;
         minConstraints: any;
         onResizeStart: (e: any) => void;
+        style: {
+            left: string;
+            top: string;
+            position: string;
+        };
     };
     render(): any;
 }

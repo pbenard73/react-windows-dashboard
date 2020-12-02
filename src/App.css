@@ -4,8 +4,6 @@
 }
 
 .window{
-    opacity:1;
-    transition: opacity .6s ease;
 border: 0px solid transparent !important;
     height: 100%;
     width: 100%;
@@ -13,7 +11,13 @@ border: 0px solid transparent !important;
     border-radius: 2px;
     box-shadow: -1px 1px 8px grey;    
 }
-.window.deleting{
+
+.window_container{
+    opacity:1;
+    transition: opacity .6s ease;
+
+}
+.deleting{
     opacity:0;
 }
 
