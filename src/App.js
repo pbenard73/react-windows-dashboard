@@ -5,7 +5,7 @@ import './styles/Dashboard.scss';
 import Windows from "./Windows";
 import { Calculator } from 'react-mac-calculator-extra'
 
-const assetPrefix = "/pbenard73/react-windows-dashboard"
+const assetPrefix = "/react-windows-dashboard"
 
 const One = () => <div contenteditable="true">My Note</div>;
 
