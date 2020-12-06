@@ -48,8 +48,7 @@ class Window extends React.Component {
         let data = {
             ...this.props,
             toggle: this.toggle,
-            resizable: this.resizable,
-            actions: this.getExtraActions(props)
+            resizable: this.resizable
         }
 
         data.actions = this.getExtraActions(data)
