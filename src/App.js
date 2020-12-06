@@ -8,6 +8,7 @@ import { Calculator } from 'react-mac-calculator-extra'
 const assetPrefix = "/react-windows-dashboard"
 
 const One = () => <div contenteditable="true">My Note</div>;
+const Two = () => <div contenteditable="true">My Second Note</div>;
 
 const Movie = () => (<iframe style={{width:'100%', height:'100%'}} src="https://www.youtube.com/embed/dfTPlsIq7d0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)
 
@@ -20,6 +21,7 @@ const Dashboard = props => {
             <img src={`${assetPrefix}/movie.png`} onClick={props.openMovie} style={{width: '80px', height:'80px', cursor:'pointer', userSelect:'none',margin: '10px 0'}}/>
             <img src={`${assetPrefix}/pexels-veeterzy-114979.jpg`} onClick={() => setBg(`${assetPrefix}/pexels-veeterzy-114979.jpg`)} style={{width: '80px', height:'80px', cursor:'pointer', userSelect:'none',margin: '10px 0'}}/>
             <img src={`${assetPrefix}/osx.jpg`} onClick={() => setBg(`${assetPrefix}/osx.jpg`)} style={{width: '80px', height:'80px', cursor:'pointer', userSelect:'none',margin: '10px 0'}}/>
+            <img src={`${assetPrefix}/My computer.png`} onClick={props.openTwo} style={{width: '80px', height:'80px', cursor:'pointer', userSelect:'none'}}/>
             
         </div>
     )
@@ -64,6 +66,29 @@ function App() {
         newW[`t${newIndex}`] = { 
             title: 'Movie',
             component: <Movie />,
+            actions: props => [
+                <span onClick={() => {alert('ouai gros'); props.onClose()}}>OK</span>
+            ]
+        };
+        setWindows(newW);
+        setIndex(newIndex)
+    }
+
+    const openTwo = () => {
+        const newIndex = index + 1
+        let newW = { ...windows };
+        newW[`t${newIndex}`] = { 
+            title: 'Second Note',
+            component: <Two />,
+            decorator: props => (
+            <div className='window pinky' style={{...props.style, borderRadius:'50%'}} onContextM>
+                <div className='window_content' style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <span onClick={props.onClose}>close me</span><br/>
+                    {props.children}
+                </div>
+            </div>
+
+            )
         };
         setWindows(newW);
         setIndex(newIndex)
@@ -84,7 +109,7 @@ function App() {
         setTimeout(() => setWindows(newW), 600)
     }
 
-    const dashboard = <Dashboard add={add} openCalc={openCalc} openMovie={openMovie}/>
+    const dashboard = <Dashboard add={add} openCalc={openCalc} openTwo={openTwo} openMovie={openMovie}/>
 
     return (
         <div className="App">

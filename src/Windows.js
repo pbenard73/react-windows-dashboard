@@ -36,6 +36,8 @@ class Windows extends React.Component {
                 {this.props.dashboard !== undefined ? this.props.dashboard : null}
                 {Object.keys(this.props.windows).map(uuid => {
                     const data = this.props.windows[uuid]
+                    let decorator = this.props.decorator
+                    decorator = decorator === undefined ? data.decorator : decorator
                     return (
                         <Window
                             key={uuid}
@@ -44,6 +46,7 @@ class Windows extends React.Component {
                             data={{...data, uuid}}
                             style={this.windowStyle}
                             onClose={() => this.onWindowClose(uuid)}
+                            decorator={decorator}
                         >
                             {data.component}
                         </Window>

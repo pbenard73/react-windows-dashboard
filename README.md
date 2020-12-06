@@ -138,3 +138,41 @@ function App() {
 
 export default App;
 ```
+
+## Options
+
+### Window properties
+
+* title
+    *   The window title
+* component
+    * The inner react Component
+* decorator 
+    * method that returns the window decorator
+* actions
+    * method that returns extra top right actions,
+
+
+#### default decorator
+
+```js
+    (
+        <div className='window' style={props.style}>
+            <div className='decorator'>
+                <span className='title'>{props.data.title}</span>
+                {this.getExtraActions(props)}
+                {this.resizable === false ? null : <span className='decorator_toggle' onClick={props.toggle}></span>}
+                <span className='decorator_close' onClick={props.onClose}></span>
+            </div>
+            <div className='window_content'>{props.children}</div>
+        </div>
+    )
+```
+
+#### extra actions usage
+
+```js
+    actions: props => [
+        <span onClick={() => {alert('something'); props.onClose()}}>OK</span>
+    ]
+```

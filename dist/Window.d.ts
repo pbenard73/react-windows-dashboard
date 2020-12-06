@@ -20,5 +20,9 @@ declare class Window {
             position: string;
         };
     };
+    getBaseActions(): any;
+    getExtraActions(props: any): any;
+    getBaseWindow(props?: any): any;
+    renderInnerWindow(): any;
     render(): any;
 }
