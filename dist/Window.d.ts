@@ -6,6 +6,7 @@ declare class Window {
     };
     onResizeStart(e: any): void;
     toggle(): void;
+    onStart(e: any): boolean;
     options: any;
     minSize: any;
     resizable: boolean;
@@ -14,12 +15,9 @@ declare class Window {
         height: any;
         minConstraints: any;
         onResizeStart: (e: any) => void;
-        style: {
-            left: string;
-            top: string;
-            position: string;
-        };
+        style: any;
     };
+    ref: any;
     getBaseActions(): any;
     getExtraActions(props: any): any;
     getBaseWindow(props?: any): any;

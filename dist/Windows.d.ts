@@ -13,6 +13,8 @@ declare class Windows {
         borderRadius: string;
     };
     onWindowClose(uuid: any): void;
-    toggleActive(id: any): void;
+    externalActive: boolean;
+    minimize(id: any): void;
+    toggleActive(id: any): any;
     render(): any;
 }

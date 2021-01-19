@@ -4,10 +4,20 @@ import "./App.css";
 import './styles/Dashboard.scss';
 import Windows from "./Windows";
 import { Calculator } from 'react-mac-calculator-extra'
-
+import Respo from 'react-respo'
 const assetPrefix = "/react-windows-dashboard"
 
-const One = () => <div contenteditable="true">My Note</div>;
+const One = () => (
+    <Respo container md={400} lg={600}>
+        <Respo xs={12}>Mon titre</Respo>
+        <Respo lg={6}>
+            <div contenteditable="true">My Note</div>
+        </Respo>
+        <Respo xs={0} lg={6}>
+            <div contenteditable="true">Right note</div>
+        </Respo>
+    </Respo>
+);
 const Two = () => <div contenteditable="true">My Second Note</div>;
 
 const Movie = () => (<iframe style={{width:'100%', height:'100%'}} src="https://www.youtube.com/embed/dfTPlsIq7d0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)
@@ -37,6 +47,9 @@ let initialWindows = {
 function App() {
     let [windows, setWindows] = useState(initialWindows);
     let [index, setIndex] = useState(0);
+	let [active, setActive] = useState(null)
+
+
     const add = () => {
         const newIndex = index + 1
         let newW = { ...windows };
@@ -113,7 +126,7 @@ function App() {
 
     return (
         <div className="App">
-            <Windows dashboard={dashboard} onClose={close} windows={windows} />
+            <Windows dashboard={dashboard} active={active} setActive={setActive} onClose={close} windows={windows} />
         </div>
     );
 }
