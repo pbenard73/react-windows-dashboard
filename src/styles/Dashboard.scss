@@ -1,12 +1,82 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-height: 100vh;
+}
+
+pre.mycode > code {
+    font-size: 12px !important;
+    line-height: 12px !important;
+}
+
 .dashboard {
     background-size: cover;
     background-attachment: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-position: center center;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
+    .topbar {
+        background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), transparent);
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 23px;
+            height: 23px;
+            padding: 10px;
+            background: rgba(49, 49, 49, 0.37);
+            border-radius: 50%;
+            box-shadow: 0px 0px 9px white;
+            border-radius: 50%;
+            img {
+                width: 25px;
+                height: auto;
+            }
+        }
+
+        button {
+            margin-left: 10px;
+            color: #e2f3fd;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+.window {
+    border: 0px solid transparent !important;
+    border-radius: 6px !important;
+    overflow: hidden;
+    box-shadow: 0px 1px 5px #737373;
+    .decorator {
+        background: linear-gradient(45deg, #035fa0, #00d8ff) !important;
+    }
+    .window_content {
+        overflow: auto;
+    }
+}
+.fullscreen.window_active {
+    z-index: 2000;
+}
+.react-resizable-handle {
+    cursor: se-resize;
+}
+
+.options {
+    > div > div {
+        padding: 0 15px;
+    }
+    dt {
+        background: rgba(128, 128, 128, 0.2);
+        padding: 3px;
+        margin-top: 10px;
+    }
+    .optional {
+        color: grey;
+        font-style: italic;
+    }
 }

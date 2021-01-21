@@ -16,5 +16,5 @@ declare class Windows {
     externalActive: boolean;
     minimize(id: any): void;
     toggleActive(id: any): any;
-    render(): any;
+    render(): JSX.Element;
 }

@@ -18,8 +18,10 @@ class Window extends React.Component {
 
         const data = this.props.data
         this.options = data.options === undefined ? {} : data.options
-        this.minSize = this.options.minSize !== undefined ? this.options.minSize : [300, 300]
         this.resizable = this.options.resizable !== false
+        this.size = this.options.size !== undefined ? this.options.size : null
+        this.minSize =
+            this.options.minSize !== undefined ? this.options.minSize : this.size !== null ? this.size : [300, 300]
 
         const checkPosition = () => {
             const check = type => {
@@ -38,11 +40,12 @@ class Window extends React.Component {
                 return data.position()
             } else if (data.center === true) {
                 const wrapper = document.querySelector(".windows")
+                const size = this.size === null ? this.minSize : this.size
 
                 const centering = (isLeft = true) => {
                     const value =
                         (isLeft === true ? wrapper.offsetWidth : wrapper.offsetHeight) / 2 -
-                        this.minSize[isLeft === true ? 0 : 1] / 2
+                        this.size[isLeft === true ? 0 : 1] / 2
 
                     return (value < 0 ? 0 : value) + "px"
                 }
@@ -61,6 +64,8 @@ class Window extends React.Component {
             height: this.minSize[1],
             minConstraints: this.minSize,
             onResizeStart: this.onResizeStart,
+            resizeHandles:
+                this.resizable === false ? [] : this.options.direction !== undefined ? this.options.direction : ["se"],
             style: {
                 position: "absolute",
                 ...checkPosition(),
@@ -69,6 +74,11 @@ class Window extends React.Component {
 
         if (this.resizable === false) {
             this.sizableOptions.maxConstraints = this.sizableOptions.minConstraints
+        }
+
+        if (this.size !== null) {
+            this.sizableOptions.width = this.size[0]
+            this.sizableOptions.height = this.size[1]
         }
 
         this.ref = React.createRef()
@@ -105,7 +115,9 @@ class Window extends React.Component {
                 <div className='decorator'>
                     <span className='title'>{props.data.title}</span>
                     {this.getExtraActions(props)}
-                    {this.resizable === false ? null : <span className='decorator_toggle nodrag' onClick={props.toggle}></span>}
+                    {this.resizable === false ? null : (
+                        <span className='decorator_toggle nodrag' onClick={props.toggle}></span>
+                    )}
                     <span className='decorator_close nodrag' onClick={props.onClose}></span>
                 </div>
                 <div className='window_content'>{props.children}</div>
@@ -149,7 +161,7 @@ class Window extends React.Component {
                 cancel='.react-resizable-handle, .nodrag'
                 onStart={this.onStart}
                 defaultClassName={className}
-                bounds='.dashboard'
+                bounds={this.options.bounds !== undefined ? this.options.bounds : ".dashboard"}
             >
                 <ResizableBox {...this.sizableOptions} id={this.props.data.uuid}>
                     {this.renderInnerWindow()}

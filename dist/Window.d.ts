@@ -8,19 +8,21 @@ declare class Window {
     toggle(): void;
     onStart(e: any): boolean;
     options: any;
-    minSize: any;
     resizable: boolean;
+    size: any;
+    minSize: any;
     sizableOptions: {
         width: any;
         height: any;
         minConstraints: any;
         onResizeStart: (e: any) => void;
+        resizeHandles: any;
         style: any;
     };
     ref: any;
     getBaseActions(): any;
     getExtraActions(props: any): any;
-    getBaseWindow(props?: any): any;
+    getBaseWindow(props?: any): JSX.Element;
     renderInnerWindow(): any;
-    render(): any;
+    render(): JSX.Element;
 }

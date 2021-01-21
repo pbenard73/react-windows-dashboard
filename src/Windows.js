@@ -19,7 +19,7 @@ class Windows extends React.Component {
 
         this.onWindowClose = this.onWindowClose.bind(this)
         this.externalActive = this.props.active !== undefined && this.props.setActive !== undefined
-	    this.minimize = this.minimize.bind(this)
+        this.minimize = this.minimize.bind(this)
     }
 
     onWindowClose(uuid) {
@@ -36,12 +36,12 @@ class Windows extends React.Component {
         this.setState({ active: id })
     }
 
-minimize(id) {
-	this.props.minimize(id)
-}
+    minimize(id) {
+        this.props.minimize(id)
+    }
 
     render() {
-			    //minimized={(this.props.minimized || []).indexOf(uuid) !== -1}
+        //minimized={(this.props.minimized || []).indexOf(uuid) !== -1}
         const active = this.externalActive === true ? this.props.active : this.state.active
         return (
             <div className='windows'>
@@ -63,8 +63,8 @@ minimize(id) {
                             data={{ ...data, uuid }}
                             style={this.windowStyle}
                             order={order}
-			    minimize={this.minimize}
-			    minimized={(this.props.minimized || []).indexOf(uuid) !== -1}
+                            minimize={this.minimize}
+                            minimized={(this.props.minimized || []).indexOf(uuid) !== -1}
                             onClose={() => this.onWindowClose(uuid)}
                             decorator={decorator}
                         >
