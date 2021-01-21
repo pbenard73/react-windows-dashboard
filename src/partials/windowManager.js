@@ -1,11 +1,13 @@
 import Installation from "./../windows/Installation"
 import StartContext from "./../windows/StartContext"
 import startDashboard from "./startDashboard"
+import customDecorator from './customDecorator'
 import Decorator from "./../windows/Decorator"
 import Options from "./../windows/Options"
 import Ordering from "./../windows/Ordering"
 
 const WindowManager = {
+    ...customDecorator,
     ...startDashboard,
     openInstallationBindThis() {
         const windowData = {

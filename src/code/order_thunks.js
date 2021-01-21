@@ -1,4 +1,4 @@
-import arrayMove from "array-move"
+const code = `import arrayMove from "array-move"
 
 const thunks = {
     setActive: uuid => (dispatch, getState, uuid) => {
@@ -50,4 +50,6 @@ const thunks = {
     },
 }
 
-export default thunks
+export default thunks`
+
+export default code
