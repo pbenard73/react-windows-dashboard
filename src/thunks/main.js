@@ -29,6 +29,7 @@ const thunks = {
 
         dispatch("setOrder", order)
         dispatch("setWindows", windows)
+        dispatch("setActive", uuid)
     },
     removeWindow: uuid => (dispatch, getState, uuid) => {
         let state = getState()
@@ -47,6 +48,11 @@ const thunks = {
 
         dispatch("setOrder", order)
         dispatch("setWindows", windows)
+
+        const windowKeys = Object.keys(windows)
+        if (windowKeys.length > 0) {
+            dispatch("setActive", windowKeys[windowKeys.length - 1])
+        }
     },
 }
 

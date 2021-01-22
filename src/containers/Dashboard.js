@@ -3,10 +3,13 @@ import React, { Fragment } from "react"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Button from "@material-ui/core/Button"
+import IconButton from "@material-ui/core/IconButton"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
 
 import WindowManager from './../partials/windowManager'
+
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 import hoc from './../hocs/main'
 
@@ -70,6 +73,8 @@ class Dashboard extends React.Component {
                     >
 			<MenuItem onClick={() => this.close(this.openDecorator)}>Customize Windows Decorator</MenuItem>
 			<MenuItem onClick={() => this.close(this.openOrdering)}>Managing the Windows (Order & Active)</MenuItem>
+			<MenuItem onClick={() => this.close(this.openExtraActions)}>Built-In Window Extra Actions</MenuItem>
+			<MenuItem onClick={() => this.close(this.openFocusWindows)}>Styling Window Focus</MenuItem>
                     </Menu>
                 )}
             </Fragment>
@@ -87,6 +92,11 @@ class Dashboard extends React.Component {
                         {this.renderMenuStart()}
                         {this.renderMenuConfig()}
                         {this.renderMenuOverride()}
+		<div style={{marginLeft: 'auto'}}>
+			<IconButton component="a" href="https://github.com/pbenard73/react-windows-dashboard" target="_blank" >
+<GitHubIcon style={{color:'white'}}/>
+		</IconButton>
+		</div>
                     </Toolbar>
                 </AppBar>
             </div>

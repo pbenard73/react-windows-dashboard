@@ -1,8 +1,6 @@
-import React, { Fragment } from "react"
+import React from "react"
 
 import Respo from "react-respo"
-
-import Code from "./../components/Code"
 
 const Options = () => (
     <Respo container md={1000} className='options'>

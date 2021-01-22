@@ -1,10 +1,12 @@
 import Installation from "./../windows/Installation"
 import StartContext from "./../windows/StartContext"
 import startDashboard from "./startDashboard"
-import customDecorator from './customDecorator'
+import customDecorator from "./customDecorator"
 import Decorator from "./../windows/Decorator"
 import Options from "./../windows/Options"
 import Ordering from "./../windows/Ordering"
+import ExtraActions from "./../windows/ExtraActions"
+import FocusWindows from "./../windows/FocusWindows"
 
 const WindowManager = {
     ...customDecorator,
@@ -15,6 +17,35 @@ const WindowManager = {
             title: "Installation",
             component: <Installation />,
             center: true,
+        }
+
+        this.props.addWindows(windowData)
+    },
+    openFocusWindowsBindThis() {
+        const windowData = {
+            uuid: "focus_windows",
+            title: "Focus Windows Styling",
+            component: <FocusWindows />,
+            center: true,
+            options: {
+                size: [420, 370],
+                minSize: [300, 100],
+            },
+        }
+
+        this.props.addWindows(windowData)
+    },
+    openExtraActionsBindThis() {
+        const windowData = {
+            uuid: "extra_actions",
+            title: "Window Extra Actions",
+            component: <ExtraActions />,
+            center: true,
+            actions: () => <span style={{margin:'0 5px', cursor:'pointer'}} onClick={() => alert("Why did you clicked ?")}>⛔</span>,
+            options: {
+                size: [700, 485],
+                minSize: [300, 100],
+            },
         }
 
         this.props.addWindows(windowData)

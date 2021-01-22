@@ -1,7 +1,7 @@
 import React from "react"
 
 import Draggable from "react-draggable"
-import { Resizable, ResizableBox } from "react-resizable"
+import { ResizableBox } from "react-resizable"
 
 import "./styles/Windows.scss"
 
@@ -45,7 +45,7 @@ class Window extends React.Component {
                 const centering = (isLeft = true) => {
                     const value =
                         (isLeft === true ? wrapper.offsetWidth : wrapper.offsetHeight) / 2 -
-                        this.size[isLeft === true ? 0 : 1] / 2
+                        size[isLeft === true ? 0 : 1] / 2
 
                     return (value < 0 ? 0 : value) + "px"
                 }
