@@ -1,11 +1,11 @@
 import React from "react"
 
-import Respo from "react-respo"
+import { Respo } from "react-respo"
 
 const Options = () => (
     <Respo container md={1000} className='options'>
         <Respo md={6}>
-            <div>
+            <div className="nodrag">
                 <h3>Windows Options</h3>
                 <dl>
                     <dt>windows</dt>

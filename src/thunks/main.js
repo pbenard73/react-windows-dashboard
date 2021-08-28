@@ -1,4 +1,4 @@
-import arrayMove from "array-move"
+import {arrayMoveImmutable as arrayMove} from 'array-move';
 
 const thunks = {
     setActive: uuid => (dispatch, getState, uuid) => {

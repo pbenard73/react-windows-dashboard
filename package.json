@@ -1,6 +1,6 @@
 {
   "name": "react-windows-dashboard",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "license": "ISC",
   "homepage": "https://pbenard73.github.io/react-windows-dashboard",
@@ -18,16 +18,14 @@
     "window"
   ],
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "node-sass": "^4",
+    "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-draggable": "^4.4.3",
-    "react-resizable": "^1.11.0",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "react-draggable": "^4.4.4",
+    "react-resizable": "^3.0.4",
+    "react-scripts": "^4.0.1",
+    "reactizy": "^4.1.4",
+    "webpack-cli": "^4.8.0"
   },
   "main": "./dist/index.js",
   "types": "/dist/main.d.ts",
@@ -56,24 +54,6 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
-    "array-move": "^3.0.1",
-    "clean-webpack-plugin": "^3.0.0",
-    "mini-css-extract-plugin": "^1.3.2",
-    "react-mac-calculator-extra": "^1.0.2",
-    "react-respo": "^0.1.1",
-    "react-syntax-highlighter": "^15.4.3",
-    "reactizy": "^4.1.4",
-    "typescript": "^4.1.2",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^4.2.0"
-  },
   "babel": {
     "plugins": [
       "@babel/plugin-proposal-class-properties"
@@ -82,5 +62,15 @@
       "@babel/preset-env",
       "@babel/preset-react"
     ]
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "array-move": "^4.0.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "mini-css-extract-plugin": "^2.2.0",
+    "react-respo": "^0.1.3",
+    "react-syntax-highlighter": "^15.4.4",
+    "web-vitals": "^2.1.0"
   }
 }

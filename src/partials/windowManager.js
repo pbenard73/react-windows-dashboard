@@ -18,6 +18,7 @@ const WindowManager = {
             component: <Installation />,
             center: true,
         }
+      console.log('hey')
 
         this.props.addWindows(windowData)
     },
