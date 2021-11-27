@@ -108,7 +108,15 @@ const Window = props => {
         </div>
     )
 
-    const renderInnerWindow = () => (props.decorator === undefined ? getBaseWindow() : props.decorator(getBaseActions()))
+    const renderInnerWindow = () => {
+      if (props.decorator === undefined) {
+        return getBaseWindow()
+      }
+
+      const Decorator = props.decorator
+
+      return <Decorator {...getBaseActions()} />
+    }
 
     const onStart = e => {
         if (e.target.closest(".nodrag") !== null) {
