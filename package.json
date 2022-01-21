@@ -1,6 +1,6 @@
 {
   "name": "react-windows-dashboard",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "license": "ISC",
   "homepage": "https://pbenard73.github.io/react-windows-dashboard",
@@ -24,8 +24,10 @@
     "react-draggable": "^4.4.4",
     "react-resizable": "^3.0.4",
     "react-scripts": "^4.0.1",
-    "reactizy": "^4.1.4",
     "webpack-cli": "^4.8.0"
+  },
+  "devDependencies": {
+    "reactizy": "^4.1.4"
   },
   "main": "./dist/index.js",
   "types": "/dist/main.d.ts",

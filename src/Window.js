@@ -9,10 +9,10 @@ const Window = props => {
     const [full, setFull] = useState(false)
 
     const data = props.data
-    const options = data.options === undefined ? {} : data.options
+    const options = data.options || {}
     const resizable = options.resizable !== false
-    const size = options.size !== undefined ? options.size : null
-    const minSize = options.minSize !== undefined ? options.minSize : size !== null ? size : [300, 300]
+    const size = options.size || null
+    const minSize = options.minSize || size !== null ? size : [300, 300]
 
     const checkPosition = () => {
         const check = type => {
@@ -58,7 +58,7 @@ const Window = props => {
         height: minSize[1],
         minConstraints: minSize,
         onResizeStart: onResizeStart,
-        resizeHandles: resizable === false ? [] : options.direction !== undefined ? options.direction : ["se"],
+        resizeHandles: resizable === false ? [] : options.direction || ["se"],
         style: {
             position: "absolute",
             ...checkPosition(),
@@ -77,9 +77,7 @@ const Window = props => {
     const ref = React.createRef()
 
 
-    const toggle = () => {
-        setFull(!full)
-    }
+    const toggle = () => setFull(!full)
 
     const getBaseActions = () => {
         let data = {
@@ -94,7 +92,7 @@ const Window = props => {
         return data
     }
 
-    const getExtraActions = givenProps => (givenProps.data.actions !== undefined ? givenProps.data.actions(props) : [])
+    const getExtraActions = givenProps => givenProps?.data?.actions?.(props) || []
 
     const getBaseWindow = (givenProps = getBaseActions()) => (
         <div className='window' style={givenProps.style}>
@@ -124,9 +122,7 @@ const Window = props => {
         }
     }
 
-    const onMouseDown = e => {
-        props.setActive()
-    }
+    const onMouseDown = e => props.setActive()
 
     let className = "react-draggable window_container"
     if (full === true) {

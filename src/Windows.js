@@ -16,11 +16,7 @@ const Windows = props => {
 
     const externalActive = props.active !== undefined && props.setActive !== undefined
 
-    const onWindowClose = uuid => {
-        if (props.onClose !== undefined) {
-            props.onClose(uuid)
-        }
-    }
+    const onWindowClose = uuid => props.onClose?.(uuid)
 
     const toggleActive = id => {
         if (externalActive === true) {
@@ -30,9 +26,7 @@ const Windows = props => {
         setActive(id)
     }
 
-    const minimize = id => {
-        props.minimize(id)
-    }
+    const minimize = id => props.minimize?.(id)
 
     const isActive = externalActive === true ? props.active : active
 
@@ -41,10 +35,10 @@ const Windows = props => {
             {props.dashboard !== undefined ? props.dashboard : null}
             {Object.keys(props.windows).map(uuid => {
                 const data = props.windows[uuid]
-                let decorator = props.decorator
-                decorator = decorator === undefined ? data.decorator : decorator
+                const decorator = data.decorator || props.decorator
                 let order = undefined
-                if (props.order !== undefined) {
+
+              if (props.order !== undefined) {
                     order = props.order.indexOf(uuid) + 1
                 }
 
