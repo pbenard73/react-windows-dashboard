@@ -116,10 +116,12 @@ const Window = props => {
       return <Decorator {...getBaseActions()} />
     }
 
-    const onStart = e => {
+    const onStart = (e, data) => {
         if (e.target.closest(".nodrag") !== null) {
             return false
         }
+
+        props.onDragStart(e, data, props.data)
     }
 
     const onMouseDown = e => props.setActive()
@@ -146,6 +148,8 @@ const Window = props => {
         <Draggable
             cancel='.react-resizable-handle, .nodrag'
             onStart={onStart}
+            onDrag={(e, data) => props.onDrag?.(e, data, props.data)}
+            onStop={(e, data) => props.onDragStop?.(e, data, props.data)}
             defaultClassName={className}
             bounds={roptions.bounds !== undefined ? roptions.bounds : ".dashboard"}
             onMouseDown={onMouseDown}

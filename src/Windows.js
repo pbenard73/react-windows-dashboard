@@ -54,6 +54,9 @@ const Windows = props => {
                         minimized={(props.minimized || []).indexOf(uuid) !== -1}
                         onClose={() => onWindowClose(uuid)}
                         decorator={decorator}
+                        onDragStart={props.onDragStart}
+                        onDrag={props.onDrag}
+                        onDragStop={props.onDragStop}
                     >
                         {data.component}
                     </Window>
