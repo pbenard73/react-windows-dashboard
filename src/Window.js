@@ -12,7 +12,7 @@ const Window = props => {
     const options = data.options || {}
     const resizable = options.resizable !== false
     const size = options.size || null
-    const minSize = options.minSize || size !== null ? size : [300, 300]
+    const minSize = options.minSize || (size !== null ? size : [300, 300])
 
     const checkPosition = () => {
         const check = type => {
@@ -121,7 +121,7 @@ const Window = props => {
             return false
         }
 
-        props.onDragStart(e, data, props.data)
+        props.onDragStart?.(e, data, props.data)
     }
 
     const onMouseDown = e => props.setActive()
@@ -137,6 +137,10 @@ const Window = props => {
 
     if (props.minimized === true) {
         className += " window_minimized"
+    }
+    
+    if (typeof props.data.options?.className === 'string') {
+        className += ` ${props.data.options?.className}`
     }
 
     let roptions = { ...sizableOptions }
