@@ -1,22 +1,15 @@
 {
   "files": {
-    "main.css": "/react-windows-dashboard/static/css/main.2e1d3d22.chunk.css",
-    "main.js": "/react-windows-dashboard/static/js/main.f784c1a7.chunk.js",
-    "main.js.map": "/react-windows-dashboard/static/js/main.f784c1a7.chunk.js.map",
-    "runtime-main.js": "/react-windows-dashboard/static/js/runtime-main.779483e7.js",
-    "runtime-main.js.map": "/react-windows-dashboard/static/js/runtime-main.779483e7.js.map",
-    "static/js/2.08aa1f44.chunk.js": "/react-windows-dashboard/static/js/2.08aa1f44.chunk.js",
-    "static/js/2.08aa1f44.chunk.js.map": "/react-windows-dashboard/static/js/2.08aa1f44.chunk.js.map",
-    "static/js/3.37c32ed8.chunk.js": "/react-windows-dashboard/static/js/3.37c32ed8.chunk.js",
-    "static/js/3.37c32ed8.chunk.js.map": "/react-windows-dashboard/static/js/3.37c32ed8.chunk.js.map",
+    "main.css": "/react-windows-dashboard/static/css/main.e6c13ad2.css",
+    "main.js": "/react-windows-dashboard/static/js/main.4d540345.js",
+    "static/js/787.5a90f016.chunk.js": "/react-windows-dashboard/static/js/787.5a90f016.chunk.js",
     "index.html": "/react-windows-dashboard/index.html",
-    "static/css/main.2e1d3d22.chunk.css.map": "/react-windows-dashboard/static/css/main.2e1d3d22.chunk.css.map",
-    "static/js/2.08aa1f44.chunk.js.LICENSE.txt": "/react-windows-dashboard/static/js/2.08aa1f44.chunk.js.LICENSE.txt"
+    "main.e6c13ad2.css.map": "/react-windows-dashboard/static/css/main.e6c13ad2.css.map",
+    "main.4d540345.js.map": "/react-windows-dashboard/static/js/main.4d540345.js.map",
+    "787.5a90f016.chunk.js.map": "/react-windows-dashboard/static/js/787.5a90f016.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.779483e7.js",
-    "static/js/2.08aa1f44.chunk.js",
-    "static/css/main.2e1d3d22.chunk.css",
-    "static/js/main.f784c1a7.chunk.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.4d540345.js"
   ]
 }
