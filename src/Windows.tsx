@@ -165,8 +165,8 @@ const Windows = (props: WindowsProps) => {
         ${props.defaultStyles?.resizableHandle || `
             position: absolute !important;
             transform: translate(0, 0) !important;
-            width: calc(100vw - 2px) !important;
-            height: calc(100vh - 2px) !important;
+            width: calc(100% - 2px) !important;
+            height: calc(100% - 2px) !important;
             transition: all 0.3s ease;
             top: 0% !important;
             left: 0% !important;
@@ -178,7 +178,7 @@ const Windows = (props: WindowsProps) => {
     return (
         <>
         <GlobalStyle />
-        <div className='windows' style={{position:'relative'}}>
+        <div className='windows' style={{position:'relative', height:'100%'}}>
             {props.dashboard !== undefined ? props.dashboard : null}
             {Object.keys(props.windows).map(uuid => {
                 const data = props.windows[uuid]
