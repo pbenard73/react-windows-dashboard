@@ -1,4 +1,3 @@
-const code = `// ./redux/appSlice
 import { createSlice } from "@reduxjs/toolkit"
 import { arrayMoveImmutable } from "array-move"
 import { useDispatch } from "react-redux"
@@ -88,7 +87,3 @@ const appSlice = createSlice({
         }),
     }
   }
-`
-
-export default code
-

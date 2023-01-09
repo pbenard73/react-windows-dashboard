@@ -4,22 +4,20 @@ import Code from "./../components/Code"
 import CustomDecorator from './../partials/customDecorator'
 import decorator from "./../code/decorator"
 import rounded from "./../code/decorator_rounded"
+import useWindowManager from "../partials/windowManager"
 
-import hoc from './../hocs/main'
-
-class Decorator extends React.Component {
-    render() {
-        return (
+const Decorator = () => {
+    const windowManager = useWindowManager()
+    return (
             <Fragment>
                 <p>
                     Windows Decorator can be customized, one given in the main <code>Windows</code> Component properties,
                     second given in the window data object.
                 </p>
-
                 <p>A decorator is a method with an object as argument</p>
 
                 <Code content={decorator} />
-		<p onClick={this.openCustomDecorator} style={{cursor:'pointer'}}>Click here to see a rounded window</p>
+		<p onClick={windowManager.openCustomDecorator} style={{cursor:'pointer'}}>Click here to see a rounded window</p>
 
 
 		<p>Rounded window's code : </p>
@@ -28,6 +26,6 @@ class Decorator extends React.Component {
             </Fragment>
         )
     }
-}
 
-export default hoc()(Decorator, CustomDecorator)
+
+export default Decorator

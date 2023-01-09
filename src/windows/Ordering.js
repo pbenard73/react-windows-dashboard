@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import Respo from "react-respo"
+import {Respo} from "react-respo"
 import Code from "./../components/Code"
 
 import container from "./../code/order_container"

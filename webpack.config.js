@@ -1,5 +1,4 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -7,13 +6,14 @@ module.exports = {
   mode: "production",
   entry: "./src/main.js",
   target: "node",
+  devtool: "source-map",
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
     library: "react-windows-dashboard",
     libraryTarget: "umd",
   },
-  plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin()],
+  plugins: [new CleanWebpackPlugin()],
   externals: {
     "react-draggable": "react-draggable", // Case matters here
     "react-resizable": "react-resizable", // Case matters here

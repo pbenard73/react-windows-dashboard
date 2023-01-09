@@ -2,19 +2,19 @@ import React from "react"
 
 import Code from "./../components/Code"
 
-import  Respo  from "react-respo"
+import  {Respo}  from "react-respo"
 
 import dashboard from "./../code/start_dashboard"
 import main from "./../code/start_main"
-import hoc from "./../hocs/main"
 
 class CreateDashboard extends React.Component {
+
     render() {
         return (
             <Respo container md={600} lg={1000}>
                 <Respo xs={12} md={4}>
                     <h3>Create a custom Dashboard</h3>
-                    <p>Create a component filling the screen, with a button opening a window</p>
+                    <p>Create a component filling the screen</p>
                 </Respo>
                 <Respo md={8}>
                     <Code content={dashboard} />
@@ -33,4 +33,4 @@ class CreateDashboard extends React.Component {
     }
 }
 
-export default hoc()(CreateDashboard)
+export default CreateDashboard

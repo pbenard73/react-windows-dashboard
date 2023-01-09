@@ -1,6 +1,6 @@
-import BaseWindows from './Windows'
+import BaseWindows from './../build/Windows'
 
-import BaseWindow from './Window'
+import BaseWindow from './../build/Window'
 
 import BaseOptions from './options'
 

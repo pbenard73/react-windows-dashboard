@@ -1,7 +1,7 @@
 import CreateDashboard from "./../windows/CreateDashboard"
 
-const action = {
-    openCreateDashboardBindThis: function () {
+const action = app => ({
+    openCreateDashboard: function () {
         const windowData = {
             uuid: "start_dashboard",
             title: "Get Started : Create Dashboard",
@@ -13,8 +13,8 @@ const action = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-}
+})
 
 export default action

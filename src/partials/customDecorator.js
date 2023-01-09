@@ -1,7 +1,7 @@
 import IconButton from "@material-ui/core/IconButton"
 
-const action = {
-    openCustomDecoratorBindThis: function () {
+const action = app => ({
+    openCustomDecorator: function () {
         const windowData = {
             uuid: "custom_decorator",
             component: <div>{`This is my rounded window's content`}</div>,
@@ -9,8 +9,7 @@ const action = {
                 size: [250, 250],
                 resizable: false,
             },
-            decorator: props => {
-                return (
+            decorator: props =>  (
                     <div
                         className=''
                         style={{
@@ -33,11 +32,11 @@ const action = {
                         {props.children}
                     </div>
                 )
-            },
+            ,
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-}
+})
 
 export default action

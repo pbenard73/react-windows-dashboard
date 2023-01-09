@@ -1,16 +1,19 @@
 const code = `// ./containers/Dashboard
 import React from 'react'
 import hoc from './../hocs/main'
+import { useApp } from './../redux/appSlice'
 
-class Dashboard extends React.Component {
-	addNewWindowBindThis() {
+const Dashboard = () => {
+	const app = useApp()
+
+	const addNewWindow = () => {
 		const windowData = {
 			uuid: Date.now(),
 			title: 'My Window',
 			component: <div>The content of my window</div>
 		}
 
-		this.props.addWindow(windowData)
+		app.addWindow(windowData)
 	}
 
 	render() {

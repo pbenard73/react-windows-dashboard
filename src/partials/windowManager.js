@@ -7,22 +7,25 @@ import Options from "./../windows/Options"
 import Ordering from "./../windows/Ordering"
 import ExtraActions from "./../windows/ExtraActions"
 import FocusWindows from "./../windows/FocusWindows"
+import { useApp } from "../redux/appSlice"
 
-const WindowManager = {
-    ...customDecorator,
-    ...startDashboard,
-    openInstallationBindThis() {
+const useWindowManager = () => {
+    const app = useApp()
+
+    return {
+    ...customDecorator(app),
+    ...startDashboard(app),
+    openInstallation() {
         const windowData = {
             uuid: "installation",
             title: "Installation",
             component: <Installation />,
             center: true,
         }
-      console.log('hey')
-
-        this.props.addWindows(windowData)
+console.log('openInstallation')
+        app.addWindows(windowData)
     },
-    openFocusWindowsBindThis() {
+    openFocusWindows() {
         const windowData = {
             uuid: "focus_windows",
             title: "Focus Windows Styling",
@@ -34,9 +37,9 @@ const WindowManager = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-    openExtraActionsBindThis() {
+    openExtraActions() {
         const windowData = {
             uuid: "extra_actions",
             title: "Window Extra Actions",
@@ -49,9 +52,9 @@ const WindowManager = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-    openStartContextBindThis() {
+    openStartContext() {
         const windowData = {
             uuid: "start_context",
             title: "Get Started : Create Context",
@@ -63,9 +66,9 @@ const WindowManager = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-    openOptionsBindThis() {
+    openOptions() {
         const windowData = {
             uuid: "options",
             title: "Components Options",
@@ -77,9 +80,9 @@ const WindowManager = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-    openDecoratorBindThis() {
+    openDecorator() {
         const windowData = {
             uuid: "decorator",
             title: "Customize the windows decorator",
@@ -91,9 +94,9 @@ const WindowManager = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
-    openOrderingBindThis() {
+    openOrdering() {
         const windowData = {
             uuid: "ordering",
             title: "Managing the Windows (Order & Active)",
@@ -105,8 +108,10 @@ const WindowManager = {
             },
         }
 
-        this.props.addWindows(windowData)
+        app.addWindows(windowData)
     },
+
+    }
 }
 
-export default WindowManager
+export default useWindowManager
