@@ -2,7 +2,7 @@ import React from "react"
 
 import Code from "./../components/Code"
 
-import  {Respo}  from "react-respo"
+import  { Respo }  from "react-respo"
 
 import dashboard from "./../code/start_dashboard"
 import main from "./../code/start_main"

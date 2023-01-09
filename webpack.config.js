@@ -1,12 +1,12 @@
 const path = require("path");
 
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: "production",
   entry: "./src/main.js",
-  target: "node",
-  devtool: "source-map",
+  // devtool: "source-map",
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
@@ -14,12 +14,7 @@ module.exports = {
     libraryTarget: "umd",
   },
   plugins: [new CleanWebpackPlugin()],
-  externals: {
-    "react-draggable": "react-draggable", // Case matters here
-    "react-resizable": "react-resizable", // Case matters here
-    react: "react", // Case matters here
-    "react-dom": "react-dom", // Case matters here
-  },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
@@ -30,7 +25,7 @@ module.exports = {
       {
         test: /\.(sc|c)ss$/,
         // use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader"],
         include: path.resolve(__dirname, "./src"),
       },
     ],
