@@ -5,7 +5,7 @@ const action = app => ({
         const windowData = {
             uuid: "start_dashboard",
             title: "Get Started : Create Dashboard",
-            component: <CreateDashboard />,
+            component: CreateDashboard,
             center: true,
             options: {
                 size: [700, 485],

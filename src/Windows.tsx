@@ -189,6 +189,8 @@ const Windows = (props: WindowsProps) => {
                     order = props.order.indexOf(uuid) + 1
                 }
 
+                const Component = data.component
+
                 return (
                     <Window
                         key={uuid}
@@ -206,7 +208,7 @@ const Windows = (props: WindowsProps) => {
                         onDragStop={props.onDragStop}
                         defaultStyles={props.defaultStyles}
                     >
-                        {data.component}
+                        <Component />
                     </Window>
                 )
             })}

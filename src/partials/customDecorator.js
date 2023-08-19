@@ -4,7 +4,7 @@ const action = app => ({
     openCustomDecorator: function () {
         const windowData = {
             uuid: "custom_decorator",
-            component: <div>{`This is my rounded window's content`}</div>,
+            component: () => <div>{`This is my rounded window's content`}</div>,
             options: {
                 size: [250, 250],
                 resizable: false,

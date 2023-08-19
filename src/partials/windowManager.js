@@ -19,7 +19,7 @@ const useWindowManager = () => {
         const windowData = {
             uuid: "installation",
             title: "Installation",
-            component: <Installation />,
+            component: Installation,
             center: true,
         }
 console.log('openInstallation')
@@ -29,7 +29,7 @@ console.log('openInstallation')
         const windowData = {
             uuid: "focus_windows",
             title: "Focus Windows Styling",
-            component: <FocusWindows />,
+            component: FocusWindows,
             center: true,
             options: {
                 size: [420, 370],
@@ -43,7 +43,7 @@ console.log('openInstallation')
         const windowData = {
             uuid: "extra_actions",
             title: "Window Extra Actions",
-            component: <ExtraActions />,
+            component: ExtraActions,
             center: true,
             actions: () => <span style={{margin:'0 5px', cursor:'pointer'}} onClick={() => alert("Why did you clicked ?")}>⛔</span>,
             options: {
@@ -58,7 +58,7 @@ console.log('openInstallation')
         const windowData = {
             uuid: "start_context",
             title: "Get Started : Create Context",
-            component: <StartContext />,
+            component: StartContext,
             center: true,
             options: {
                 size: [700, 485],
@@ -72,7 +72,7 @@ console.log('openInstallation')
         const windowData = {
             uuid: "options",
             title: "Components Options",
-            component: <Options />,
+            component: Options,
             center: true,
             options: {
                 size: [600, 300],
@@ -86,7 +86,7 @@ console.log('openInstallation')
         const windowData = {
             uuid: "decorator",
             title: "Customize the windows decorator",
-            component: <Decorator />,
+            component: Decorator,
             center: true,
             options: {
                 size: [712, 475],
@@ -100,7 +100,7 @@ console.log('openInstallation')
         const windowData = {
             uuid: "ordering",
             title: "Managing the Windows (Order & Active)",
-            component: <Ordering />,
+            component: Ordering,
             center: true,
             options: {
                 size: [712, 475],
