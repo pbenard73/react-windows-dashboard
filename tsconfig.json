@@ -1,7 +1,8 @@
 {
   "include": [
     "src/Windows.tsx",
-    "src/Windows.tsx"
+    "src/Windows.tsx",
+    "src/types.ts"
   ],
   "compilerOptions": {
     "target": "es2016",
