@@ -2,31 +2,8 @@ import React, { ReactNode, ReactNodeArray, useState } from "react"
 
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable"
 import { ResizableBox } from "react-resizable"
-import { DefaultStyles, WindowData } from './Windows'
+import { DefaultStyles, WindowData, WindowProps } from './Windows'
 import styled from 'styled-components'
-
-interface WindowProps {
-    data: WindowData
-
-    active?: boolean
-    minimized?: boolean
-    order?: string | number
-
-    decorator?: any
-    style: any
-    defaultStyles?: DefaultStyles
-
-    minimize: (uuid: string) => void
-
-    onClose: () => void
-    setActive: () => void
-
-    onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void
-    onDragStart?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void
-    onDragStop?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void
-
-    children: ReactNode|ReactNode[]
-}
 
 const Decorator = styled.div`
     height: 20px;
@@ -100,6 +77,8 @@ const Window = (props: WindowProps) => {
     const size = options.size || null
     const minSize = options.minSize || (size !== null ? size : [300, 300])
 
+    const cancelClass = props.cancelClass || 'nodrag'
+
     const checkPosition = () => {
         const check = (type: 'left' | 'top') => {
             if (data[type] === undefined) {
@@ -121,7 +100,7 @@ const Window = (props: WindowProps) => {
 
             const centering = (isLeft = true) => {
                 const value =
-                    (isLeft === true ? wrapper?.offsetWidth || 300 : wrapper?.offsetHeight || 300) / 2 - msize[isLeft === true ? 0 : 1] / 2
+                    (isLeft === true ? wrapper?.offsetWidth || 300 : wrapper?.offsetHeight || 300) / 2 - msize[isLeft === true ? 0 : 1] / 2
 
                 return (value < 0 ? 0 : value) + "px"
             }
@@ -135,7 +114,7 @@ const Window = (props: WindowProps) => {
         }
     }
 
-    const onResizeStart = (e:any) => {
+    const onResizeStart = (e: any) => {
         e.preventDefault()
     }
 
@@ -178,15 +157,15 @@ const Window = (props: WindowProps) => {
         return data
     }
 
-    const getExtraActions = (givenProps:any) => givenProps?.data?.actions?.(props) || []
+    const getExtraActions = (givenProps: any) => givenProps?.data?.actions?.(props) || []
 
     const getBaseWindow = (givenProps = getBaseActions()) => (
         <div className='window' style={givenProps.style}>
             <Decorator>
                 <span className='title'>{givenProps.data.title}</span>
                 {getExtraActions(givenProps)}
-                {resizable === false ? null : <span className='decorator_toggle nodrag' onClick={givenProps.toggle}></span>}
-                <span className='decorator_close nodrag' onClick={givenProps.onClose}></span>
+                {resizable === false ? null : <span className={`decorator_toggle ${cancelClass}`} onClick={givenProps.toggle}></span>}
+                <span className={`decorator_close ${cancelClass}`} onClick={givenProps.onClose}></span>
             </Decorator>
             <div className='window_content'>{givenProps.children}</div>
         </div>
@@ -203,14 +182,14 @@ const Window = (props: WindowProps) => {
     }
 
     const onStart = (e: any, data: DraggableData) => {
-        if (e.target.closest(".nodrag") !== null) {
+        if (e.target.closest(`.${cancelClass}`) !== null) {
             return false
         }
 
         props.onDragStart?.(e, data, props.data)
     }
 
-    const onMouseDown = (e:any) => props.setActive()
+    const onMouseDown = (e: any) => props.setActive()
 
     let className = "react-draggable window_container"
     if (full === true) {
@@ -236,7 +215,7 @@ const Window = (props: WindowProps) => {
 
     return (
         <Draggable
-            cancel='.react-resizable-handle, .nodrag'
+            cancel={`.react-resizable-handle, .${cancelClass}`}
             onStart={onStart}
             onDrag={(e, data) => props.onDrag?.(e, data, props.data)}
             onStop={(e, data) => props.onDragStop?.(e, data, props.data)}

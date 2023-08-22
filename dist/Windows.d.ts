@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { DraggableData, DraggableEvent } from "react-draggable";
-interface WindowsProps {
+export interface WindowsProps {
     /**
      * @description Actual active window uuid
      */
@@ -53,8 +53,26 @@ interface WindowsProps {
      * @description Method to call when window is dragging
      */
     onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => any;
+    cancelClass?: string;
 }
-type CssString = string;
+export type CssString = string;
+export interface WindowProps {
+    data: WindowData;
+    active?: boolean;
+    minimized?: boolean;
+    order?: string | number;
+    decorator?: any;
+    style: any;
+    defaultStyles?: DefaultStyles;
+    minimize: (uuid: string) => void;
+    onClose: () => void;
+    setActive: () => void;
+    onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void;
+    onDragStart?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void;
+    onDragStop?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void;
+    children: ReactNode | ReactNode[];
+    cancelClass?: string;
+}
 export interface DefaultStyles {
     window?: CssString;
     resizableHandle?: CssString;

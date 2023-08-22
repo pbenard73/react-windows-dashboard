@@ -1,6 +1,6 @@
 {
   "name": "react-windows-dashboard",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "license": "ISC",
   "homepage": "https://pbenard73.github.io/react-windows-dashboard",
@@ -43,6 +43,7 @@
     "react-resizable": "^3.0.4"
   },
   "main": "./dist/index.js",
+  "types": "./dist/Window.d.ts",
   "scripts": {
     "start": "react-scripts start",
     "build": "npx tsc; rm -rf ./dist; ./node_modules/webpack/bin/webpack.js; cp -r build/* dist/.; ",

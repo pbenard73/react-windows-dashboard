@@ -4,7 +4,7 @@ import Window from "./Window"
 import { DraggableData, DraggableEvent } from "react-draggable"
 import { createGlobalStyle } from 'styled-components'
 
-interface WindowsProps {
+export interface WindowsProps {
 
     /**
      * @description Actual active window uuid
@@ -14,17 +14,17 @@ interface WindowsProps {
     /**
      * @description Method to set a window active
      */
-    setActive?: (uuid:string) => void
+    setActive?: (uuid: string) => void
 
     /**
      * @description Method to close a window
      */
-    onClose?: (uuid:string) => void
+    onClose?: (uuid: string) => void
 
     /**
      * @description Method to register a window uuid in minimized pool
      */
-    minimize?: (uuid:string) => void
+    minimize?: (uuid: string) => void
 
     /**
      * @description React Node to use as Dashboard
@@ -59,21 +59,47 @@ interface WindowsProps {
     /**
      * @description Method to call on window drag start
      */
-    onDragStart?: (e:DraggableEvent, data: DraggableData, windowData?: WindowData) => any
+    onDragStart?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => any
 
     /**
      * @description Method to call on window drag stop 
      */
-    onDragStop?: (e:DraggableEvent, data: DraggableData, windowData?: WindowData) => any
+    onDragStop?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => any
 
     /**
      * @description Method to call when window is dragging
      */
-    onDrag?: (e:DraggableEvent, data: DraggableData, windowData?: WindowData) => any
+    onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => any
+
+
+    cancelClass?: string
 }
 
-type CssString = string
+export type CssString = string
 
+export interface WindowProps {
+    data: WindowData
+
+    active?: boolean
+    minimized?: boolean
+    order?: string | number
+
+    decorator?: any
+    style: any
+    defaultStyles?: DefaultStyles
+
+    minimize: (uuid: string) => void
+
+    onClose: () => void
+    setActive: () => void
+
+    onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void
+    onDragStart?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void
+    onDragStop?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void
+
+    children: ReactNode | ReactNode[]
+    cancelClass?: string
+}
 export interface DefaultStyles {
     window?: CssString
     resizableHandle?: CssString
@@ -83,7 +109,7 @@ export interface DefaultStyles {
 }
 
 export interface WindowData {
-    
+
     /**
      * @description Window uuid 
      */
@@ -93,7 +119,7 @@ export interface WindowData {
      * @description Title to show in window top bar
      */
     title: string
-    
+
     options?: any
 
     /**
@@ -106,7 +132,7 @@ export interface WindowData {
     left?: any
     top?: any
     position?: any
-    
+
     /**
      * @description Open window at center of the dashboard
      */
@@ -114,9 +140,9 @@ export interface WindowData {
 }
 
 const Windows = (props: WindowsProps) => {
-    const [active, setActive] = useState<string|null>(null)
+    const [active, setActive] = useState<string | null>(null)
 
-    const windowStyle = props.defaultStyles?.window || {
+    const windowStyle = props.defaultStyles?.window || {
         border: "1px solid #e1e1e1",
         height: "100%",
         width: "100%",
@@ -126,23 +152,23 @@ const Windows = (props: WindowsProps) => {
 
     const externalActive = props.active !== undefined && props.setActive !== undefined
 
-    const onWindowClose = (uuid:string) => props.onClose?.(uuid)
+    const onWindowClose = (uuid: string) => props.onClose?.(uuid)
 
-    const toggleActive = (uuid:string) => {
-        if (externalActive === true && props.setActive)  {
+    const toggleActive = (uuid: string) => {
+        if (externalActive === true && props.setActive) {
             return props.setActive(uuid)
         }
 
         setActive(uuid)
     }
 
-    const minimize = (uuid:string) => props.minimize?.(uuid)
+    const minimize = (uuid: string) => props.minimize?.(uuid)
 
     const isActive = externalActive === true ? props.active : active
 
     const GlobalStyle = createGlobalStyle`
     .react-resizable-handle {
-        ${props.defaultStyles?.resizableHandle || `
+        ${props.defaultStyles?.resizableHandle || `
             position: absolute;
             bottom: 3px;
             right: 3px;
@@ -154,15 +180,15 @@ const Windows = (props: WindowsProps) => {
     }
     
     .window_content {
-        ${props.defaultStyles?.windowContent || `height: calc(100% - 24px);overflow:auto;`}
+        ${props.defaultStyles?.windowContent || `height: calc(100% - 24px);overflow:auto;`}
     }
     
     .window_active {
-        ${props.defaultStyles?.windowContent || `z-index: 1;`}
+        ${props.defaultStyles?.windowContent || `z-index: 1;`}
     }
     
     .fullscreen {
-        ${props.defaultStyles?.resizableHandle || `
+        ${props.defaultStyles?.resizableHandle || `
             position: absolute !important;
             transform: translate(0, 0) !important;
             width: calc(100% - 2px) !important;
@@ -177,43 +203,44 @@ const Windows = (props: WindowsProps) => {
 
     return (
         <>
-        <GlobalStyle />
-        <div className='windows' style={{position:'relative', height:'100%'}}>
-            {props.dashboard !== undefined ? props.dashboard : null}
-            {Object.keys(props.windows).map(uuid => {
-                const data = props.windows[uuid]
-                const decorator = data.decorator || props.decorator
-                let order = undefined
-                
-                if (props.order !== undefined) {
-                    order = props.order.indexOf(uuid) + 1
-                }
+            <GlobalStyle />
+            <div className='windows' style={{ position: 'relative', height: '100%' }}>
+                {props.dashboard !== undefined ? props.dashboard : null}
+                {Object.keys(props.windows).map(uuid => {
+                    const data = props.windows[uuid]
+                    const decorator = data.decorator || props.decorator
+                    let order = undefined
 
-                const Component = data.component
+                    if (props.order !== undefined) {
+                        order = props.order.indexOf(uuid) + 1
+                    }
 
-                return (
-                    <Window
-                        key={uuid}
-                        active={isActive === uuid}
-                        setActive={() => toggleActive(uuid)}
-                        data={{ ...data, uuid }}
-                        style={windowStyle}
-                        order={order}
-                        minimize={minimize}
-                        minimized={(props.minimized || []).indexOf(uuid) !== -1}
-                        onClose={() => onWindowClose(uuid)}
-                        decorator={decorator}
-                        onDragStart={props.onDragStart}
-                        onDrag={props.onDrag}
-                        onDragStop={props.onDragStop}
-                        defaultStyles={props.defaultStyles}
-                    >
-                        <Component />
-                    </Window>
-                )
-            })}
-        </div>
-            </>
+                    const Component = data.component
+
+                    return (
+                        <Window
+                            key={uuid}
+                            active={isActive === uuid}
+                            setActive={() => toggleActive(uuid)}
+                            data={{ ...data, uuid }}
+                            style={windowStyle}
+                            order={order}
+                            minimize={minimize}
+                            minimized={(props.minimized || []).indexOf(uuid) !== -1}
+                            onClose={() => onWindowClose(uuid)}
+                            decorator={decorator}
+                            onDragStart={props.onDragStart}
+                            onDrag={props.onDrag}
+                            onDragStop={props.onDragStop}
+                            defaultStyles={props.defaultStyles}
+                            cancelClass={props.cancelClass}
+                        >
+                            <Component />
+                        </Window>
+                    )
+                })}
+            </div>
+        </>
     )
 }
 

@@ -73,6 +73,7 @@ const Window = (props) => {
     const resizable = options.resizable !== false;
     const size = options.size || null;
     const minSize = options.minSize || (size !== null ? size : [300, 300]);
+    const cancelClass = props.cancelClass || 'nodrag';
     const checkPosition = () => {
         const check = (type) => {
             if (data[type] === undefined) {
@@ -128,7 +129,7 @@ const Window = (props) => {
         return data;
     };
     const getExtraActions = (givenProps) => { var _a, _b; return ((_b = (_a = givenProps === null || givenProps === void 0 ? void 0 : givenProps.data) === null || _a === void 0 ? void 0 : _a.actions) === null || _b === void 0 ? void 0 : _b.call(_a, props)) || []; };
-    const getBaseWindow = (givenProps = getBaseActions()) => (_jsxs("div", Object.assign({ className: 'window', style: givenProps.style }, { children: [_jsxs(Decorator, { children: [_jsx("span", Object.assign({ className: 'title' }, { children: givenProps.data.title })), getExtraActions(givenProps), resizable === false ? null : _jsx("span", { className: 'decorator_toggle nodrag', onClick: givenProps.toggle }), _jsx("span", { className: 'decorator_close nodrag', onClick: givenProps.onClose })] }), _jsx("div", Object.assign({ className: 'window_content' }, { children: givenProps.children }))] })));
+    const getBaseWindow = (givenProps = getBaseActions()) => (_jsxs("div", Object.assign({ className: 'window', style: givenProps.style }, { children: [_jsxs(Decorator, { children: [_jsx("span", Object.assign({ className: 'title' }, { children: givenProps.data.title })), getExtraActions(givenProps), resizable === false ? null : _jsx("span", { className: `decorator_toggle ${cancelClass}`, onClick: givenProps.toggle }), _jsx("span", { className: `decorator_close ${cancelClass}`, onClick: givenProps.onClose })] }), _jsx("div", Object.assign({ className: 'window_content' }, { children: givenProps.children }))] })));
     const renderInnerWindow = () => {
         if (props.decorator === undefined) {
             return getBaseWindow();
@@ -138,7 +139,7 @@ const Window = (props) => {
     };
     const onStart = (e, data) => {
         var _a;
-        if (e.target.closest(".nodrag") !== null) {
+        if (e.target.closest(`.${cancelClass}`) !== null) {
             return false;
         }
         (_a = props.onDragStart) === null || _a === void 0 ? void 0 : _a.call(props, e, data, props.data);
@@ -161,6 +162,6 @@ const Window = (props) => {
     if (props.order !== undefined) {
         roptions.style.zIndex = props.order;
     }
-    return (_jsx(Draggable, Object.assign({ cancel: '.react-resizable-handle, .nodrag', onStart: onStart, onDrag: (e, data) => { var _a; return (_a = props.onDrag) === null || _a === void 0 ? void 0 : _a.call(props, e, data, props.data); }, onStop: (e, data) => { var _a; return (_a = props.onDragStop) === null || _a === void 0 ? void 0 : _a.call(props, e, data, props.data); }, defaultClassName: className, bounds: roptions.bounds !== undefined ? roptions.bounds : ".dashboard", onMouseDown: onMouseDown }, { children: _jsx(ResizableBox, Object.assign({}, sizableOptions, { children: renderInnerWindow() })) })));
+    return (_jsx(Draggable, Object.assign({ cancel: `.react-resizable-handle, .${cancelClass}`, onStart: onStart, onDrag: (e, data) => { var _a; return (_a = props.onDrag) === null || _a === void 0 ? void 0 : _a.call(props, e, data, props.data); }, onStop: (e, data) => { var _a; return (_a = props.onDragStop) === null || _a === void 0 ? void 0 : _a.call(props, e, data, props.data); }, defaultClassName: className, bounds: roptions.bounds !== undefined ? roptions.bounds : ".dashboard", onMouseDown: onMouseDown }, { children: _jsx(ResizableBox, Object.assign({}, sizableOptions, { children: renderInnerWindow() })) })));
 };
 export default Window;
