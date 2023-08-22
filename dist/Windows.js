@@ -64,7 +64,7 @@ const Windows = (props) => {
                             order = props.order.indexOf(uuid) + 1;
                         }
                         const Component = data.component;
-                        return (_jsx(Window, Object.assign({ active: isActive === uuid, setActive: () => toggleActive(uuid), data: Object.assign(Object.assign({}, data), { uuid }), style: windowStyle, order: order, minimize: minimize, minimized: (props.minimized || []).indexOf(uuid) !== -1, onClose: () => onWindowClose(uuid), decorator: decorator, onDragStart: props.onDragStart, onDrag: props.onDrag, onDragStop: props.onDragStop, defaultStyles: props.defaultStyles, cancelClass: props.cancelClass }, { children: _jsx(Component, {}) }), uuid));
+                        return (_jsx(Window, Object.assign({ active: isActive === uuid, setActive: () => toggleActive(uuid), data: Object.assign(Object.assign({}, data), { uuid }), style: windowStyle, order: order, minimize: minimize, minimized: (props.minimized || []).indexOf(uuid) !== -1, onClose: () => onWindowClose(uuid), decorator: decorator, onDragStart: props.onDragStart, onDrag: props.onDrag, onDragStop: props.onDragStop, defaultStyles: props.defaultStyles, cancelClass: props.cancelClass, cancelSelector: props.cancelSelector }, { children: _jsx(Component, {}) }), uuid));
                     })] }))] }));
 };
 export default Windows;

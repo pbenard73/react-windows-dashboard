@@ -139,7 +139,8 @@ const Window = (props) => {
     };
     const onStart = (e, data) => {
         var _a;
-        if (e.target.closest(`.${cancelClass}`) !== null) {
+        if ((e.target.closest(`.${cancelClass}`) !== null) ||
+            (props.cancelSelector && (e.target.closest(props.cancelSelector) !== null))) {
             return false;
         }
         (_a = props.onDragStart) === null || _a === void 0 ? void 0 : _a.call(props, e, data, props.data);

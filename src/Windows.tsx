@@ -71,8 +71,15 @@ export interface WindowsProps {
      */
     onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => any
 
+    /**
+     * @description Default cancel class name
+     */
+     cancelClass?: string
 
-    cancelClass?: string
+     /**
+      * @description Extra css selector to cancel event
+      */
+     cancelSelector?: string
 }
 
 export type CssString = string
@@ -99,6 +106,7 @@ export interface WindowProps {
 
     children: ReactNode | ReactNode[]
     cancelClass?: string
+    cancelSelector?:string
 }
 export interface DefaultStyles {
     window?: CssString
@@ -234,6 +242,7 @@ const Windows = (props: WindowsProps) => {
                             onDragStop={props.onDragStop}
                             defaultStyles={props.defaultStyles}
                             cancelClass={props.cancelClass}
+                            cancelSelector={props.cancelSelector}
                         >
                             <Component />
                         </Window>

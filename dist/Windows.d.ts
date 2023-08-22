@@ -53,7 +53,14 @@ export interface WindowsProps {
      * @description Method to call when window is dragging
      */
     onDrag?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => any;
+    /**
+     * @description Default cancel class name
+     */
     cancelClass?: string;
+    /**
+     * @description Extra css selector to cancel event
+     */
+    cancelSelector?: string;
 }
 export type CssString = string;
 export interface WindowProps {
@@ -72,6 +79,7 @@ export interface WindowProps {
     onDragStop?: (e: DraggableEvent, data: DraggableData, windowData?: WindowData) => void;
     children: ReactNode | ReactNode[];
     cancelClass?: string;
+    cancelSelector?: string;
 }
 export interface DefaultStyles {
     window?: CssString;

@@ -182,7 +182,10 @@ const Window = (props: WindowProps) => {
     }
 
     const onStart = (e: any, data: DraggableData) => {
-        if (e.target.closest(`.${cancelClass}`) !== null) {
+        if (
+            (e.target.closest(`.${cancelClass}`) !== null) ||
+            (props.cancelSelector && (e.target.closest(props.cancelSelector) !== null))
+        ) {
             return false
         }
 
